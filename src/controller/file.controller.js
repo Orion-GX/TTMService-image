@@ -7,7 +7,6 @@ const upload = async (req, res) => {
   try {
     const folderName = __basedir + "/public/assets/images/";
     try {
-      console.log(folderName);
       if (!fs.existsSync(folderName)) {
         fs.mkdirSync(folderName);
       }
@@ -99,9 +98,10 @@ const uploadFileDoc = async (req, res) => {
 
 const download = (req, res) => {
   const fileName = req.params.name;
-  const directoryPath = __basedir + "/resources/static/assets/uploads/";
+  const folderName = __basedir + "/public/assets/images/";
+  // const directoryPath = __basedir + "/resources/static/assets/uploads/";
 
-  res.sendFile(directoryPath + fileName, fileName, (err) => {
+  res.sendFile(folderName + fileName, fileName, (err) => {
     if (err) {
       res.status(500).send({
         message: "Could not download the file. " + err,
